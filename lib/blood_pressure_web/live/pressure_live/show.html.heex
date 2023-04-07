@@ -1,0 +1,28 @@
+<.header>
+  Pressure <%= @pressure.id %>
+  <:subtitle>This is a pressure record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/pressures/#{@pressure}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit pressure</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="High"><%= @pressure.high %></:item>
+  <:item title="Low"><%= @pressure.low %></:item>
+  <:item title="Timestemp"><%= @pressure.timestemp %></:item>
+</.list>
+
+<.back navigate={~p"/pressures"}>Back to pressures</.back>
+
+<.modal :if={@live_action == :edit} id="pressure-modal" show on_cancel={JS.patch(~p"/pressures/#{@pressure}")}>
+  <.live_component
+    module={BloodPressureWeb.PressureLive.FormComponent}
+    id={@pressure.id}
+    title={@page_title}
+    action={@live_action}
+    pressure={@pressure}
+    patch={~p"/pressures/#{@pressure}"}
+  />
+</.modal>

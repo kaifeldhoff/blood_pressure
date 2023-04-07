@@ -1,0 +1,43 @@
+<.header>
+  Listing Pressures
+  <:actions>
+    <.link patch={~p"/pressures/new"}>
+      <.button>New Pressure</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="pressures"
+  rows={@streams.pressures}
+  row_click={fn {_id, pressure} -> JS.navigate(~p"/pressures/#{pressure}") end}
+>
+  <:col :let={{_id, pressure}} label="High"><%= pressure.high %></:col>
+  <:col :let={{_id, pressure}} label="Low"><%= pressure.low %></:col>
+  <:col :let={{_id, pressure}} label="Timestemp"><%= pressure.timestemp %></:col>
+  <:action :let={{_id, pressure}}>
+    <div class="sr-only">
+      <.link navigate={~p"/pressures/#{pressure}"}>Show</.link>
+    </div>
+    <.link patch={~p"/pressures/#{pressure}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, pressure}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: pressure.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="pressure-modal" show on_cancel={JS.patch(~p"/pressures")}>
+  <.live_component
+    module={BloodPressureWeb.PressureLive.FormComponent}
+    id={@pressure.id || :new}
+    title={@page_title}
+    action={@live_action}
+    pressure={@pressure}
+    patch={~p"/pressures"}
+  />
+</.modal>
