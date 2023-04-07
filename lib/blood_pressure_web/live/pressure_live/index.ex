@@ -23,7 +23,7 @@ defmodule BloodPressureWeb.PressureLive.Index do
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Pressure")
-    |> assign(:pressure, %Pressure{})
+    |> assign(:pressure, Metrics.prefilled_pressure())
   end
 
   defp apply_action(socket, :index, _params) do

@@ -55,6 +55,11 @@ defmodule BloodPressure.Metrics do
     |> Repo.insert()
   end
 
+  def prefilled_pressure() do
+    Pressure.new()
+  end
+
+
   @doc """
   Updates a pressure.
 

@@ -59,5 +59,10 @@ defmodule BloodPressure.MetricsTest do
       pressure = pressure_fixture()
       assert %Ecto.Changeset{} = Metrics.change_pressure(pressure)
     end
+
+    test "prefilled pressure should contain timestamp" do
+      new = Pressure.new()
+      assert new.timestamp != nil
+    end
   end
 end

@@ -20,7 +20,9 @@ defmodule BloodPressureWeb.Router do
     live "/", PressureLive.Index, :index
     live "/pressures", PressureLive.Index, :index
     live "/pressures/new", PressureLive.Index, :new
-    live "/pressures/:id", PressureLive.Index, :edit
+    live "/pressures/:id", PressureLive.Show, :show
+    live "/pressures/:id/show/edit", PressureLive.Show, :edit
+    live "/pressures/:id/edit", PressureLive.Index, :edit
   end
 
   # Other scopes may use custom stacks.
