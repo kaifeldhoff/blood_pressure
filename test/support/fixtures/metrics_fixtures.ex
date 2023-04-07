@@ -13,7 +13,7 @@ defmodule BloodPressure.MetricsFixtures do
       |> Enum.into(%{
         high: 42,
         low: 42,
-        timestemp: ~N[2023-04-06 13:06:00]
+        timestamp: ~N[2023-04-06 13:06:00]
       })
       |> BloodPressure.Metrics.create_pressure()
 

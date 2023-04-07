@@ -8,7 +8,7 @@ defmodule BloodPressure.MetricsTest do
 
     import BloodPressure.MetricsFixtures
 
-    @invalid_attrs %{high: nil, low: nil, timestemp: nil}
+    @invalid_attrs %{high: nil, low: nil, timestamp: nil}
 
     test "list_pressures/0 returns all pressures" do
       pressure = pressure_fixture()
@@ -21,12 +21,12 @@ defmodule BloodPressure.MetricsTest do
     end
 
     test "create_pressure/1 with valid data creates a pressure" do
-      valid_attrs = %{high: 42, low: 42, timestemp: ~N[2023-04-06 13:06:00]}
+      valid_attrs = %{high: 42, low: 42, timestamp: ~N[2023-04-06 13:06:00]}
 
       assert {:ok, %Pressure{} = pressure} = Metrics.create_pressure(valid_attrs)
       assert pressure.high == 42
       assert pressure.low == 42
-      assert pressure.timestemp == ~N[2023-04-06 13:06:00]
+      assert pressure.timestamp == ~N[2023-04-06 13:06:00]
     end
 
     test "create_pressure/1 with invalid data returns error changeset" do
@@ -35,12 +35,12 @@ defmodule BloodPressure.MetricsTest do
 
     test "update_pressure/2 with valid data updates the pressure" do
       pressure = pressure_fixture()
-      update_attrs = %{high: 43, low: 43, timestemp: ~N[2023-04-07 13:06:00]}
+      update_attrs = %{high: 43, low: 43, timestamp: ~N[2023-04-07 13:06:00]}
 
       assert {:ok, %Pressure{} = pressure} = Metrics.update_pressure(pressure, update_attrs)
       assert pressure.high == 43
       assert pressure.low == 43
-      assert pressure.timestemp == ~N[2023-04-07 13:06:00]
+      assert pressure.timestamp == ~N[2023-04-07 13:06:00]
     end
 
     test "update_pressure/2 with invalid data returns error changeset" do

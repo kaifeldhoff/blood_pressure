@@ -21,7 +21,7 @@ defmodule BloodPressureWeb.PressureLive.FormComponent do
       >
         <.input field={@form[:high]} type="number" label="High" />
         <.input field={@form[:low]} type="number" label="Low" />
-        <.input field={@form[:timestemp]} type="datetime-local" label="Timestemp" />
+        <.input field={@form[:timestamp]} type="datetime-local" label="Timestamp" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Pressure</.button>
         </:actions>

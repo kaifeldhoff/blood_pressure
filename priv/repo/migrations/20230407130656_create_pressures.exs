@@ -5,7 +5,7 @@ defmodule BloodPressure.Repo.Migrations.CreatePressures do
     create table(:pressures) do
       add :high, :integer
       add :low, :integer
-      add :timestemp, :naive_datetime
+      add :timestamp, :naive_datetime
 
       timestamps()
     end

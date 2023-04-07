@@ -4,9 +4,9 @@ defmodule BloodPressureWeb.PressureLiveTest do
   import Phoenix.LiveViewTest
   import BloodPressure.MetricsFixtures
 
-  @create_attrs %{high: 42, low: 42, timestemp: "2023-04-06T13:06:00"}
-  @update_attrs %{high: 43, low: 43, timestemp: "2023-04-07T13:06:00"}
-  @invalid_attrs %{high: nil, low: nil, timestemp: nil}
+  @create_attrs %{high: 42, low: 42, timestamp: "2023-04-06T13:06:00"}
+  @update_attrs %{high: 43, low: 43, timestamp: "2023-04-07T13:06:00"}
+  @invalid_attrs %{high: nil, low: nil, timestamp: nil}
 
   defp create_pressure(_) do
     pressure = pressure_fixture()
