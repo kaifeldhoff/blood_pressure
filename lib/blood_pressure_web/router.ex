@@ -17,7 +17,10 @@ defmodule BloodPressureWeb.Router do
   scope "/", BloodPressureWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", PressureLive.Index, :index
+    live "/pressures", PressureLive.Index, :index
+    live "/pressures/new", PressureLive.Index, :new
+    live "/pressures/:id", PressureLive.Index, :edit
   end
 
   # Other scopes may use custom stacks.
