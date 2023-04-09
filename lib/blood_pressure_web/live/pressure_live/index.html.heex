@@ -14,7 +14,7 @@
 >
   <:col :let={{_id, pressure}} label="High"><%= pressure.high %></:col>
   <:col :let={{_id, pressure}} label="Low"><%= pressure.low %></:col>
-  <:col :let={{_id, pressure}} label="Timestamp"><%= pressure.timestamp %></:col>
+  <:col :let={{_id, pressure}} label="Timestamp"><%= pressure.pretty_datetime %></:col>
   <:action :let={{_id, pressure}}>
     <div class="sr-only">
       <.link navigate={~p"/pressures/#{pressure}"}>Show</.link>

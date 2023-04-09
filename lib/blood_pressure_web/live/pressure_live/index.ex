@@ -2,7 +2,6 @@ defmodule BloodPressureWeb.PressureLive.Index do
   use BloodPressureWeb, :live_view
 
   alias BloodPressure.Metrics
-  alias BloodPressure.Metrics.Pressure
 
   @impl true
   def mount(_params, _session, socket) do

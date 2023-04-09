@@ -64,5 +64,20 @@ defmodule BloodPressure.MetricsTest do
       new = Pressure.new()
       assert new.timestamp != nil
     end
+
+    test "virtual field should be filled" do
+      pressure = pressure_fixture()
+      assert pressure.pretty_datetime
+    end
+
+    test "list should be ordered by timestamp" do
+      _pressure = pressure_fixture
+      _pressure = pressure_fixture(%{timestamp: ~N[2023-04-05 13:06:00]})
+      [timestamp_1, timestamp_2] =
+        Metrics.list_pressures()
+        |> Enum.map(&Map.get(&1, :timestamp))
+      assert timestamp_1 > timestamp_2
+    end
+
   end
 end

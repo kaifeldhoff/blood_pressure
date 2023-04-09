@@ -3,7 +3,7 @@ defmodule BloodPressure.Metrics do
   The Metrics context.
   """
 
-  import Ecto.Query, warn: false
+  import Ecto.Query, warn: false, only: [from: 2, order_by: 3, select: 3]
   alias BloodPressure.Repo
 
   alias BloodPressure.Metrics.Pressure
@@ -18,7 +18,11 @@ defmodule BloodPressure.Metrics do
 
   """
   def list_pressures do
-    Repo.all(Pressure)
+    Pressure
+    |> order_by([p], desc: p.timestamp)
+    |> select([p], p)
+    |> Repo.all()
+    |> Enum.map(&Pressure.put_pretty_datetime/1)
   end
 
   @doc """
@@ -35,7 +39,10 @@ defmodule BloodPressure.Metrics do
       ** (Ecto.NoResultsError)
 
   """
-  def get_pressure!(id), do: Repo.get!(Pressure, id)
+  def get_pressure!(id) do
+    Repo.get!(Pressure, id)
+    |> Pressure.put_pretty_datetime()
+  end
 
   @doc """
   Creates a pressure.
