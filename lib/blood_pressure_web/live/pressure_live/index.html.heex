@@ -7,6 +7,10 @@
   </:actions>
 </.header>
 
+<div>
+  <.live_component module={BloodPressureWeb.Live.Graph} id="demo" />
+</div>
+
 <.table
   id="pressures"
   rows={@streams.pressures}
