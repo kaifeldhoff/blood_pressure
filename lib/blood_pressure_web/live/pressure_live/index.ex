@@ -33,7 +33,7 @@ defmodule BloodPressureWeb.PressureLive.Index do
 
   @impl true
   def handle_info({BloodPressureWeb.PressureLive.FormComponent, {:saved, pressure}}, socket) do
-    {:noreply, stream_insert(socket, :pressures, pressure)}
+    {:noreply, stream_insert(socket, :pressures, pressure, at: 0)}
   end
 
   @impl true
