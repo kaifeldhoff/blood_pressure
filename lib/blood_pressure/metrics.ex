@@ -25,6 +25,15 @@ defmodule BloodPressure.Metrics do
     |> Enum.map(&Pressure.put_pretty_datetime/1)
   end
 
+  def list_pressures_as_csv do
+    Pressure
+    |> order_by([p], desc: p.timestamp)
+    |> select([p], p)
+    |> Repo.all()
+    |> Enum.map(&Pressure.to_plain_map/1)
+    |> CSV.encode(separator: ?;, headers: [:timestamp, :high, :low])
+  end
+
   @doc """
   Gets a single pressure.
 
@@ -62,10 +71,14 @@ defmodule BloodPressure.Metrics do
     |> Repo.insert()
   end
 
+  def insert_pressures_from_csv(csv) when is_bitstring(csv) do
+    csv
+    |> CSV.decode!(separator: ?;)
+  end
+
   def prefilled_pressure() do
     Pressure.new()
   end
-
 
   @doc """
   Updates a pressure.

@@ -38,6 +38,14 @@ defmodule BloodPressure.Metrics.Pressure do
     end
   end
 
+  def to_plain_map(%Pressure{high: high, low: low, timestamp: timestamp}) do
+    %{
+      high: high,
+      low: low,
+      timestamp: timestamp
+    }
+  end
+
   defp to_pretty_datetime(timestamp) do
     Calendar.strftime(timestamp, "%a, %d %b %Y, %H:%M")
   end

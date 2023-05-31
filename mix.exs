@@ -46,6 +46,7 @@ defmodule BloodPressure.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:csv, "~> 3.0"},
       {:vega_lite, "~> 0.1"}
     ]
   end
